@@ -14,8 +14,8 @@ function arrayRefresh (){
 };
 
 //HERE BEGINS THE CODE FOR THE COUNTDOWN CLOCK ---------------------------------
-function timeSegments (i) {
-  if (i < 10){i= `0${i}`;};
+function checkTime (timeSegments) {
+  if (timeSegments < 10){timeSegments= `0${timeSegments}`;};
   return i;
 }; // makes our clock more normal/symmetric-looking.
 
@@ -32,9 +32,9 @@ function displayClock(){
       arrayRefresh();
       //also, reset the 'do_more' boolean to TRUE (note: do this inside the array refresher)
     };
-    hour = timeSegments(hour);
-    min = timeSegments(min);
-    sec = timeSegments(sec);
+    hour = checkTime(hour);
+    min = checkTime(min);
+    sec = checkTime(sec);
     clock.textContent = `${hour}:${min}:${sec}`;
   }, 1000);
 };
