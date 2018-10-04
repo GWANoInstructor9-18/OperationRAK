@@ -16,7 +16,7 @@ function arrayRefresh (){
 //HERE BEGINS THE CODE FOR THE COUNTDOWN CLOCK ---------------------------------
 function checkTime (timeSegments) {
   if (timeSegments < 10){timeSegments= `0${timeSegments}`;};
-  return i;
+  return timeSegments;
 }; // makes our clock more normal/symmetric-looking.
 
 function displayClock(){
