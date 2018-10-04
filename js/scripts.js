@@ -1,12 +1,23 @@
 // In the html, give the section/header/div the following id to show the clock:: 'clock'
 // For example: <h1 class="text-center" id="clock"></h1>
 
+let points = 0;
+const button = document.getElementById("task-btn");
+const counter = document.getElementById("kp-counter");
+
+function pointAdder(){
+  points += 10;
+  counter.textContent = points;
+}
+
+button.addEventListener("click", pointAdder);
+
 // MAKE THE ARRAYS HERE.
 // (will need at least 2: one for the titles and one for the actual description)
-
+//
 // PUT THE boolean VALUE HERE (for preventing the users from spamming the "refresh" feature)
-let clear_to_refresh = true;
-
+// let clear_to_refresh = true;
+//
 // PUT THE ARRAY REFRESHER HERE
 // (need to dig up the randomizer selector from previous class or find one with internet)
 function arrayRefresh (){
@@ -39,4 +50,4 @@ function displayClock(){
   }, 1000);
 };
 displayClock();
-//HERE ENDS THE CODE FOR THE COUNTDOWN CLOCK. ----------------------------------
+// HERE ENDS THE CODE FOR THE COUNTDOWN CLOCK. ----------------------------------
