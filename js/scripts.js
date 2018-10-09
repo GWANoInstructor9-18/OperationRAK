@@ -1,6 +1,18 @@
 // In the html, give the section/header/div the following id to show the clock:: 'clock'
 // For example: <h1 class="text-center" id="clock"></h1>
+function Acts(actsTitle, actsDescription, actsCompletedDate, actsStatus = "Incomplete" ){
+  this.title = actsTitle;
+  this.description = actsDescription;
+  this.completed_date = actsCompletedDate;
+  this.point_value = Math.floor(Math.random() * (99 - 15 + 1)) + 15;
+  this.status = actsStatus;
+}
 
+
+
+
+
+//POINT ADDER
 let points = 0;
 const button = document.getElementById("task-btn");
 const counter = document.getElementById("kp-counter");
@@ -49,5 +61,5 @@ function displayClock(){
     clock.textContent = `${hour}:${min}:${sec}`;
   }, 1000);
 };
-displayClock();
+// displayClock();
 // HERE ENDS THE CODE FOR THE COUNTDOWN CLOCK. ----------------------------------
