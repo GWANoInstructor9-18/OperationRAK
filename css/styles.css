@@ -60,7 +60,8 @@ body {
   width: 50em;
 }
 li {
-  font-size: 20px;
+  font-family: 'happy monkey';
+  font-size: 25px;
   list-style-position: : inside;
   list-style: none;
   text-align: ;
@@ -88,13 +89,30 @@ li {
   border-radius: 15px;
   margin-top: 15em;
   margin-bottom: 15em;
-  background-color: rgba(255, 253, 250, .9);
+  background-color: #ffffff;
 }
 
 img{
   height: 3em;
-  margin-top: 9em;
+  margin-top: 4em;
   margin-left: 9em;
+}
+
+.points {
+  font-family: 'happy monkey';
+  font-size: 15px;
+  /* z-index: -100; */
+  margin-top: 6em;
+}
+.canvas-style {
+  z-index: 100;
+}
+audio, canvas, progress, video {
+  display: inline-block;
+  vertical-align: baseline;
+  margin-top: 3em;
+  margin-left: 40px;
+
 }
 
 
@@ -113,11 +131,7 @@ img{
     overflow: scroll;
   }
 }
-audio, canvas, progress, video {
-  display: inline-block;
-  vertical-align: baseline;
-  margin-left: 56px;
-}
+
 
 
 
