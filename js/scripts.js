@@ -5,7 +5,7 @@
 // (will need at least 2: one for the titles and one for the actual description)
 let arrTitles = [`HUG BUG`, `BE SPONTANEOUS!`, `COMEDIAN`, `GOOD VIBES`, `HODOR!`, `5 UP!`, `LOOKIN' GOOD!`, `SOCIAL BUTTERFLY`];
 let arrActs = [`Give somebody a hug.`, `Sometimes, random acts of kindness just come to you in the moment!`, `Get somebody to laugh.`, `Write a positive comment on a website/blog/video.`, `Hold the door for someone.`, `High-five a stranger!`, `Give someone a compliment.`, `Strike up a conversation with somebody while at the store (grocery or otherwise).`];
-//8 so far.
+//8 so far. Reformat into a 2D-array?
 let arrTitleLess = [
     `Offer someone your pen.`,
     `Let someone go in front of you in line.`,
@@ -13,7 +13,7 @@ let arrTitleLess = [
     `Pay for someone's coffee.`,
     `Spread some encouragement online.`,
     `Learn to say "Hello" in a different language.`,
-    `Do a favor without asking for anything in return.`
+    `Do a favor without asking for anything in return.`,
     `Lend a friend a favorite book/movie.`,
     `Take the time to listen to someone.`,
     `Help a child or older person cross the street.`,
@@ -44,7 +44,15 @@ let arrTitleLess = [
     `Forgive someone.`,
     `Bring your co-workers or fellow students a sweet treat.`,
     `Thank a teacher.`,
-    `Share your umbrella with someone on a rainy day.`
+    `Share your umbrella with someone on a rainy day.`,
+    `Give somebody a hug.`,
+    `Sometimes, random acts of kindness just come to you in the moment!`,
+    `Get somebody to laugh.`,
+    `Write a positive comment on a website/blog/video.`,
+    `Hold the door for someone.`,
+    `High-five a stranger!`,
+    `Give someone a compliment.`,
+    `Strike up a conversation with somebody while at the store (grocery or otherwise).`
   ];// 37
 
 // PUT THE boolean VALUE HERE (for preventing the users from spamming the "refresh" feature)
@@ -54,20 +62,42 @@ let clearToRefresh = true;
 // (need to dig up the randomizer selector from previous class or find one with internet)
 function arrayRefresh (){
   //do stuff here.
+  // console.log(arrTitleLess);
   if(clearToRefresh) {
+    var arr = [];
+    while(arr.length < 5){
+        var randomnumber = Math.floor(Math.random()*(45)) +1;
+        if(arr.indexOf(randomnumber) > -1) continue;
+        arr[arr.length] = randomnumber;
+    };
+    let actOne = arr[0];
+    let actTwo = arr[1];
+    let actThree = arr[2];
+    let actFour = arr[3];
+    let actFive = arr[4];
+
     // using arrTitleLess for now.
-    let actOne = Math.floor(Math.random()*38);
-    let actTwo = Math.floor(Math.random()*38);
-    let actThree = Math.floor(Math.random()*38);
-    let actFour = Math.floor(Math.random()*38);
-    let actFive = Math.floor(Math.random()*38);
+    // let actOne = Math.floor(Math.random()*45);
+    // let actTwo = Math.floor(Math.random()*45);
+    // let actThree = Math.floor(Math.random()*45);
+    // let actFour = Math.floor(Math.random()*45);
+    // let actFive = Math.floor(Math.random()*45);
+    // get 1 random # for actOne,
     // arrTitleLess[actOne]
     // From here, create elements with included event listeners to poplulate the space defined for these acts on the main page.
-    
+
     //do things
+    //testing
+    console.log(`${arrTitleLess[actOne]}`);
+    console.log(`${arrTitleLess[actTwo]}`);
+    console.log(`${arrTitleLess[actThree]}`);
+    console.log(`${arrTitleLess[actFour]}`);
+    console.log(`${arrTitleLess[actFive]}`);
+
     clearToRefresh = false;
   }
 };
+arrayRefresh();
 
 //NEEd AN EVENT LISTENER THAT listens for when all 5 buttons have been pressed and prompts the user if they want to get a new list of acts to do.
 
@@ -76,6 +106,22 @@ function checkTime (timeSegments) {
   if (timeSegments < 10){timeSegments= `0${timeSegments}`;};
   return timeSegments;
 }; // makes our clock more normal/symmetric-looking.
+
+// WORK IN PROGRESS
+function countdownToCompletion(){// Hey Robert, here's that mini countdown clock for the acts you wanted. This is still a WIP.
+  //make a text REGION above where the button is (or where the description text goes) that will be where this gets displayed.
+  setInterval(function() {
+    let now = new Date();
+    let sec = now.getSeconds();
+    let bigRedButton = 5 + sec;//now.getSeconds();
+
+    while(bigRedButton !== sec ){
+      sec = now.getSeconds();
+      let then = sec - bigRedButton;
+      //display 'then' to the REGION created above
+    }
+  }, 1000);
+}; // WORK IN PROGRESS, don't forget to add the function call.
 
 function displayClock(){
   const clock = document.getElementById("clock");
