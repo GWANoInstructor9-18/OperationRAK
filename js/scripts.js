@@ -79,6 +79,13 @@ function arrayRefresh (){
     // arrTitleLess[actOne]
     // From here, create elements with included event listeners to poplulate the space defined for these acts on the main page.
 
+    //The following was in the html for displaying within the dom.
+    // <div id="firstAct"></div>
+    // <div id="secondAct"></div>
+    // <div id="thirdAct"></div>
+    // <div id="fourthAct"></div>
+    // <div id="fifthAct"></div>
+
     //do things
     let a1 = document.getElementById("firstAct");
     let a2 = document.getElementById("secondAct");
