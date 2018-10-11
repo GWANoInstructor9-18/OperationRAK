@@ -1,6 +1,7 @@
 body {
   margin: 0 auto;
 }
+
 .background {
   background: #292E49;
   background: -webkit-linear-gradient(to top, #BBD2C5, #536976, #292E49);
@@ -19,6 +20,7 @@ body {
   height: 30em;
   width: 50em;
 }
+
 li {
   font-family: 'happy monkey';
   font-size: 25px;
@@ -39,17 +41,29 @@ li {
 }
 
 .flex {
-  /* margin-top: 20em; */
   display: flex;
+  flex-flow: row;
   justify-content: space-evenly;
 }
-
+.daily-timer {
+  font-size: 25px;
+  color: #ffffff;
+  font-family: 'happy monkey';
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 4em;
+}
 .boxes {
   border: #a3a3a3 .5px solid;
   border-radius: 15px;
-  margin-top: 15em;
+  margin-top: 3em;
   margin-bottom: 15em;
   background-color: #ffffff;
+
 }
 
 img{
@@ -82,7 +96,7 @@ audio, canvas, progress, video {
 @media only screen and (min-width : 300px) {
   .flex {
     display: flex;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
     justify-content: space-evenly;
   }
   .background {
