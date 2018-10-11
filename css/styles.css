@@ -1,0 +1,42 @@
+.background {
+  background-color: white;
+}
+
+/* styling for the header/menu nav. */
+.topnav {
+  font-size: 43px;
+  font-family: "happy monkey";
+  padding: 3px 53px;
+  color:green;
+}
+
+
+/* main styles for the button that completes tasks. */
+.round-button {
+    display:block;
+    width:100px;
+    height:100px;
+    line-height:100px;
+    border: 3px solid #f5f5f5;
+    border-radius: 50%;
+    color:#f5f5f5;
+    text-align:center;
+    text-decoration:none;
+    background: #4b70ff;
+    box-shadow: 0px 0px 15px #ff7141;
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* Controls hover behavior for button that completes tasks. */
+.round-button:hover {
+    background: #ff7141;
+    transition-duration: .2s;
+}
+
+/* controls behavior of the task completion button after a user clicks it.  */
+.round-button:active {
+  background-color: #4b70ff;
+  box-shadow: 0px 0px 35px #ff7141;
+  transform: translateY(4px);
+}
