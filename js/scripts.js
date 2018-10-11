@@ -6,6 +6,7 @@
 let arrTitles = [`HUG BUG`, `BE SPONTANEOUS!`, `COMEDIAN`, `GOOD VIBES`, `HODOR!`, `5 UP!`, `LOOKIN' GOOD!`, `SOCIAL BUTTERFLY`];
 let arrActs = [`Give somebody a hug.`, `Sometimes, random acts of kindness just come to you in the moment!`, `Get somebody to laugh.`, `Write a positive comment on a website/blog/video.`, `Hold the door for someone.`, `High-five a stranger!`, `Give someone a compliment.`, `Strike up a conversation with somebody while at the store (grocery or otherwise).`];
 //8 so far. Reformat into a 2D-array?
+
 let arrTitleLess = [
     `Offer someone your pen.`,
     `Let someone go in front of you in line.`,
@@ -52,17 +53,15 @@ let arrTitleLess = [
     `Hold the door for someone.`,
     `High-five a stranger!`,
     `Give someone a compliment.`,
-    `Strike up a conversation with somebody while at the store (grocery or otherwise).`
-  ];// 37
+    `Strike up a conversation with somebody while at the store (grocery or other).`
+  ];// 45
 
 // PUT THE boolean VALUE HERE (for preventing the users from spamming the "refresh" feature)
 let clearToRefresh = true;
 
 // PUT THE ARRAY REFRESHER HERE
-// (need to dig up the randomizer selector from previous class or find one with internet)
 function arrayRefresh (){
   //do stuff here.
-  // console.log(arrTitleLess);
   if(clearToRefresh) {
     var arr = [];
     while(arr.length < 5){
@@ -77,29 +76,30 @@ function arrayRefresh (){
     let actFive = arr[4];
 
     // using arrTitleLess for now.
-    // let actOne = Math.floor(Math.random()*45);
-    // let actTwo = Math.floor(Math.random()*45);
-    // let actThree = Math.floor(Math.random()*45);
-    // let actFour = Math.floor(Math.random()*45);
-    // let actFive = Math.floor(Math.random()*45);
-    // get 1 random # for actOne,
     // arrTitleLess[actOne]
     // From here, create elements with included event listeners to poplulate the space defined for these acts on the main page.
 
     //do things
+    let a1 = document.getElementById("firstAct");
+    let a2 = document.getElementById("secondAct");
+    let a3 = document.getElementById("thirdAct");
+    let a4 = document.getElementById("fourthAct");
+    let a5 = document.getElementById("fifthAct");
+
     //testing
-    console.log(`${arrTitleLess[actOne]}`);
-    console.log(`${arrTitleLess[actTwo]}`);
-    console.log(`${arrTitleLess[actThree]}`);
-    console.log(`${arrTitleLess[actFour]}`);
-    console.log(`${arrTitleLess[actFive]}`);
+    a1.textContent= `${arrTitleLess[actOne]}`;
+    a2.textContent= `${arrTitleLess[actTwo]}`;
+    a3.textContent= `${arrTitleLess[actThree]}`;
+    a4.textContent= `${arrTitleLess[actFour]}`;
+    a5.textContent= `${arrTitleLess[actFive]}`;
 
     clearToRefresh = false;
   }
+  //else do nothing.
 };
 arrayRefresh();
 
-//NEEd AN EVENT LISTENER THAT listens for when all 5 buttons have been pressed and prompts the user if they want to get a new list of acts to do.
+//NEED AN EVENT LISTENER THAT listens for when all 5 buttons have been pressed and prompts the user if they want to get a new list of acts to do.
 
 //HERE BEGINS THE CODE FOR THE COUNTDOWN CLOCK ---------------------------------
 function checkTime (timeSegments) {
