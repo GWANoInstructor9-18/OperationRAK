@@ -2,6 +2,57 @@ body {
   margin: 0 auto;
 }
 
+
+/* styling for the header/menu nav. */
+
+.topnav {
+  font-size: 43px;
+  font-family: "happy monkey";
+  padding: 3px 53px;
+}
+
+a:-webkit-any-link {
+    color: #ffff;
+    cursor: pointer;
+    text-decoration: none;
+    text-shadow: black 1px 1px 1px;
+}
+
+
+
+/* main styles for the button that completes tasks. */
+.round-button {
+    display: inline;
+    width: 60px;
+    height: 60px;
+    line-height:100px;
+    border: 3px solid #f5f5f5;
+    border-radius: 50%;
+    color:#f5f5f5;
+    text-align:center;
+    text-decoration:none;
+    background: #4b70ff;
+    box-shadow: 0px 0px 15px #ff7141;
+    font-size:20px;
+    font-weight:bold;
+    margin-left: 13em;
+    margin-bottom: 1em;
+}
+
+/* Controls hover behavior for button that completes tasks. */
+.round-button:hover {
+    background: #ff7141;
+    transition-duration: .2s;
+}
+
+/* controls behavior of the task completion button after a user clicks it.  */
+.round-button:active {
+  background-color: #4b70ff;
+  box-shadow: 0px 0px 35px #ff7141;
+  transform: translateY(4px);
+}
+
+
 .background {
   background: #292E49;
   background: -webkit-linear-gradient(to top, #BBD2C5, #536976, #292E49);
@@ -30,7 +81,8 @@ li {
   /* border-radius: 15px; */
   border-bottom: grey 1px solid;
   /* border: grey 1px solid; */
-  height: 3em;
+  /* height: 3em; */
+  margin-top: 15px;
   margin-right: 35px;
   margin-left: 35px;
 }
@@ -47,20 +99,29 @@ li {
 }
 .daily-timer {
   font-size: 25px;
-  color: #ffffff;
+  color: #BBD2C5;
   font-family: 'happy monkey';
+  text-shadow: black 1px 1px 3px;
   margin: 0 auto;
   width: 100%;
   display: flex;
   flex-wrap: wrap-reverse;
   flex-direction: column;
   justify-content: center;
-  margin-top: 4em;
+  margin-top: 2em;
+}
+
+#clock {
+  font-size: 30px;
+  /* color: #ffffff; */
+  font-family: 'happy monkey';
+  font-style: bold;
 }
 .boxes {
-  border: #a3a3a3 .5px solid;
+  /* border: #a3a3a3 .5px solid; */
+  box-shadow: grey 1px 1px 1px;
   border-radius: 15px;
-  margin-top: 3em;
+  margin-top: 1em;
   margin-bottom: 15em;
   background-color: #ffffff;
 
@@ -75,7 +136,6 @@ img{
 .points {
   font-family: 'happy monkey';
   font-size: 15px;
-  /* z-index: -100; */
   margin-top: 6em;
 }
 .canvas-style {
@@ -124,8 +184,8 @@ audio, canvas, progress, video {
     background-repeat: repeat;
     background-position: center;
     overflow: scroll;
-  }
-} */
+  } */
+}
 
 /* Large Screens */
 @media only screen and (min-width : 1200px) {
