@@ -24,7 +24,7 @@ function displayClock(){
   // Jacob here, I really hope this is the best way of going about it.
   setInterval(function () {
     let today = new Date();
-    let hour = 24 - today.getHours();
+    let hour = 23 - today.getHours();
     let min = 60 - today.getMinutes();
     let sec = 60 - today.getSeconds();
     //putting a checker to see if it's time to load up a new checklist of nice things to do.
@@ -45,18 +45,18 @@ displayClock();
 
 // this is the progress circle
 // circle siziing
-var canvas = document.getElementsByTagName('myCanvas')[0];
+let canvas = document.getElementsByTagName('myCanvas')[0];
 myCanvas.width  = 202;
 myCanvas.height = 202;
 myCanvas.style.width  = '255px';
 myCanvas.style.height = '255px';
 
-var ctx = document.getElementById('myCanvas').getContext('2d');
-var al = 0;
-var start = 4.72;
-var cw = ctx.canvas.width;
-var ch = ctx.canvas.height;
-var diff;
+let ctx = document.getElementById('myCanvas').getContext('2d');
+let al = 0;
+let start = 4.72;
+let cw = ctx.canvas.width;
+let ch = ctx.canvas.height;
+let diff;
 
 
 function progressSim (){
@@ -76,4 +76,4 @@ function progressSim (){
   }
   al++;
 }
-var sim = setInterval (progressSim, 50);
+let sim = setInterval (progressSim, 50);
