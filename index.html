@@ -6,14 +6,93 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/stylesheet.css">
-
+	<link href="https://fonts.googleapis.com/css?family=Happy+Monkey" rel="stylesheet">
+	<!--  css links -->
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<title>Operation RAK</title>
 </head>
-<body>
-		
+<body class="background">
 
-<!-- <script type="text/javascript"></script> -->
+	<nav class="text-center">
+	  <ul>
+	    <div class="topnav">
+	      <a class="active" href="stats.html">Stats |</a>
+	      <a href="rakhistory.html">RAK History |</a>
+	      <a href="about.html">About</a>
+	    </div>
+	  </ul>
+	</nav>
+
+	<!--  start of containers -->
+	<section class="background">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 flex">
+					<!--  timer section-->
+					<div class="daily-timer text-center">
+						<div id="clock"></div>
+						<h1>Left to complete today's deeds.</h1>
+					</div>
+
+					<div class="rakList boxes">
+						<ul>
+							<!-- <li class="rak"><b>Hug bug</b> <br> Give someone a hug. <button class="round-button"></button></li> -->
+							<li class="rak">
+								<div class="row">
+									<div class="col-md-9"><b>Hug bug</b> <br> Give someone a hug.</div>
+									<div class="col-md-3"><button class="round-button"></button></div>
+								</div>
+							</li>
+
+							<li class="rak">
+								<div class="row">
+									<div class="col-md-9"><b>Hug bug</b> <br> Give someone a hug.</div>
+									<div class="col-md-3"><button class="round-button"></button></div>
+								</div>
+							</li>
+
+							<li class="rak">
+								<div class="row">
+									<div class="col-md-9"><b>Hug bug</b> <br> Give someone a hug.</div>
+									<div class="col-md-3"><button class="round-button"></button></div>
+								</div>
+							</li>
+
+							<li class="rak">
+								<div class="row">
+									<div class="col-md-9"><b>Hug bug</b> <br> Give someone a hug.</div>
+									<div class="col-md-3"><button class="round-button"></button></div>
+								</div>
+							</li>
+
+							<li class="rak">
+								<div class="row">
+									<div class="col-md-9"><b>Hug bug</b> <br> Give someone a hug.</div>
+									<div class="col-md-3"><button class="round-button"></button></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="kpScores boxes">
+						<div class="kpTally text-center">
+							<img src="img/KP.png" alt="">
+						</div>
+						<div>
+							<!-- <div class="points text-center">750/1000</div> -->
+							<canvas class="canvas-style" id="myCanvas">
+								<div class="points text-center">750/1000</div>
+							</canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+<!--  javascript links-->
 <script src="js/scripts.js"></script>
 
 </body>
