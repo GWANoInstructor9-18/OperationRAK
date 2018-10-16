@@ -102,7 +102,7 @@ function arrayRefresh (){
 
     clearToRefresh = false;
   }
-  //else do nothing.
+  //else, do nothing.
 };
 arrayRefresh();
 
@@ -135,7 +135,7 @@ function displayClock(){
   // Jacob here, I really hope this is the best way of going about it.
   setInterval(function () {
     let today = new Date();
-    let hour = 24 - today.getHours();
+    let hour = 23 - today.getHours();
     let min = 60 - today.getMinutes();
     let sec = 60 - today.getSeconds();
     //putting a checker to see if it's time to load up a new checklist of nice things to do.
