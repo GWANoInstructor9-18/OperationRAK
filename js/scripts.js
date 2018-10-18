@@ -59,15 +59,24 @@ let arrTitleLess = [
 // PUT THE boolean VALUE HERE (for preventing the users from spamming the "refresh" feature)
 let clearToRefresh = true;
 
+// PUTTING THE ACT CLASS HERE.
+function Acts(actsTitle, actsDescription, actsCompletedDate = "Incomplete"){
+  this.title = actsTitle;
+  this.description = actsDescription;
+  this.completed_date = actsCompletedDate;
+  this.point_value = Math.floor(Math.random() *(99 - 15 + 1)) + 15;
+};
+
 // PUT THE ARRAY REFRESHER HERE
 function arrayRefresh (){
   //do stuff here.
   if(clearToRefresh) {
     var arr = [];
     while(arr.length < 5){
-        var randomnumber = Math.floor(Math.random()*(45)) +1;
+        var randomnumber = Math.floor(Math.random()*(arrActs.length)); //+1
         if(arr.indexOf(randomnumber) > -1) continue;
         arr[arr.length] = randomnumber;
+
     };
     let actOne = arr[0];
     let actTwo = arr[1];
@@ -75,37 +84,60 @@ function arrayRefresh (){
     let actFour = arr[3];
     let actFive = arr[4];
 
-    // using arrTitleLess for now.
-    // arrTitleLess[actOne]
-    // From here, create elements with included event listeners to poplulate the space defined for these acts on the main page.
+    let redOne = new Acts();
+    redOne.actsTitle = `${arrTitles[actOne]}`;
+    redOne.actsDescription = `${arrActs[actOne]}`;
 
-    //The following was in the html for displaying within the dom.
-    // <div id="firstAct"></div>
-    // <div id="secondAct"></div>
-    // <div id="thirdAct"></div>
-    // <div id="fourthAct"></div>
-    // <div id="fifthAct"></div>
+    let redTwo = new Acts();
+    redTwo.actsTitle = `${arrTitles[actTwo]}`;
+    redTwo.actsDescription = `${arrActs[actTwo]}`;
+
+    let redThree = new Acts();
+    redThree.actsTitle = `${arrTitles[actThree]}`;
+    redThree.actsDescription = `${arrActs[actThree]}`;
+
+    let redFour = new Acts();
+    redFour.actsTitle = `${arrTitles[actFour]}`;
+    redFour.actsDescription = `${arrActs[actFour]}`;
+
+    let redFive = new Acts();
+    redFive.actsTitle = `${arrTitles[actFive]}`;
+    redFive.actsDescription = `${arrActs[actFive]}`;
+
+    // using arrTitleLess for testing with a big array..
+    // arrTitleLess[actOne]
+    // todo? From here, create elements with included event listeners to poplulate the space defined for these acts on the main page.
 
     //do things
-    let a1 = document.getElementById("firstAct");
-    let a2 = document.getElementById("secondAct");
-    let a3 = document.getElementById("thirdAct");
-    let a4 = document.getElementById("fourthAct");
-    let a5 = document.getElementById("fifthAct");
+    // ACT-the-Nth-title/description.
+    let a1t = document.getElementById("firstActTitle");
+    let a1d = document.getElementById("firstActDesc");
+    let a2t = document.getElementById("secondActTitle");
+    let a2d = document.getElementById("secondActDesc");
+    let a3t = document.getElementById("thirdActTitle");
+    let a3d = document.getElementById("thirdActDesc");
+    let a4t = document.getElementById("fourthActTitle");
+    let a4d = document.getElementById("fourthActDesc");
+    let a5t = document.getElementById("fifthActTitle");
+    let a5d = document.getElementById("fifthActDesc");
 
-    //testing
-    a1.textContent= `${arrTitleLess[actOne]}`;
-    a2.textContent= `${arrTitleLess[actTwo]}`;
-    a3.textContent= `${arrTitleLess[actThree]}`;
-    a4.textContent= `${arrTitleLess[actFour]}`;
-    a5.textContent= `${arrTitleLess[actFive]}`;
+    //Displaying in the html;
+    a1t.textContent= redOne.actsTitle;
+    a1d.textContent= redOne.actsDescription; //`${arrTitleLess[actOne]}`;
+    a2t.textContent= redTwo.actsTitle;
+    a2d.textContent= redTwo.actsDescription;
+    a3t.textContent= redThree.actsTitle;
+    a3d.textContent= redThree.actsDescription;
+    a4t.textContent= redFour.actsTitle;
+    a4d.textContent= redFour.actsDescription;
+    a5t.textContent= redFive.actsTitle;
+    a5d.textContent= redFive.actsDescription;
 
     clearToRefresh = false;
   }
   //else, do nothing.
 };
 arrayRefresh();
-
 //NEED AN EVENT LISTENER THAT listens for when all 5 buttons have been pressed and prompts the user if they want to get a new list of acts to do.
 
 //HERE BEGINS THE CODE FOR THE COUNTDOWN CLOCK ---------------------------------
