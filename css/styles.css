@@ -50,6 +50,12 @@ a:-webkit-any-link {
   transform: translateY(4px);
 }
 
+.round-button-disabled {
+    margin: -52px 0px 0px -9px;
+    width: 60px;
+    height: 60px;
+}
+
 
 .background {
   background: #292E49;
