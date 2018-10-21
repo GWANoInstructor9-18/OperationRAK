@@ -18,6 +18,17 @@ a:-webkit-any-link {
     text-shadow: black 1px 1px 1px;
 }
 
+/*Used for vertically aligning, this is the outer/parent tag*/
+.aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Used for vertically aligning, this is the inner/child tag*/
+.aligner-item {
+  max-width: 50%;
+}
 
 
 /* main styles for the button that completes tasks. */
@@ -81,7 +92,6 @@ li {
   font-size: 25px;
   list-style-position: : inside;
   list-style: none;
-  text-align: ;
   border-bottom: grey 1px solid;
   margin-top: 2%;
   margin-right: 3%;
