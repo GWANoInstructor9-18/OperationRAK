@@ -1,3 +1,48 @@
+
+//Stores acts in localStorage
+function storeActs(actObject) 
+{
+  let actsArray = localStorage.getItem("acts") ? JSON.parse(localStorage.getItem("acts")) : [];
+  actsArray.push(actObject);
+  localStorage.setItem("acts", JSON.stringify(actsArray));
+}
+
+function populatePageActs(actsArray)
+{
+  // ACT-the-Nth-title/description.
+  let a1t = document.getElementById("firstActTitle");
+  let a1d = document.getElementById("firstActDesc");
+  let a2t = document.getElementById("secondActTitle");
+  let a2d = document.getElementById("secondActDesc");
+  let a3t = document.getElementById("thirdActTitle");
+  let a3d = document.getElementById("thirdActDesc");
+  let a4t = document.getElementById("fourthActTitle");
+  let a4d = document.getElementById("fourthActDesc");
+  let a5t = document.getElementById("fifthActTitle");
+  let a5d = document.getElementById("fifthActDesc");
+
+  //Displaying in the html;
+  a1t.textContent= actsArray[0].title;
+  a1d.textContent= actsArray[0].description; //`${arrTitleLess[actOne]}`;
+  a2t.textContent= actsArray[1].title;
+  a2d.textContent= actsArray[1].description;
+  a3t.textContent= actsArray[2].title;
+  a3d.textContent= actsArray[2].description;
+  a4t.textContent= actsArray[3].title;
+  a4d.textContent= actsArray[3].description;
+  a5t.textContent= actsArray[4].title;
+  a5d.textContent= actsArray[4].description;
+}
+
+function getCurrentDate(now)
+{
+  let day = now.getDate() + 1;
+  let month = now.getMonth() + 1;
+  let year = now.getFullYear();
+
+  return new Date(`${year}-${month}-${day}`);
+}
+
 // In the html, give the section/header/div the following id to show the clock:: 'clock'
 // For example: <h1 class="text-center" id="clock"></h1>
 
@@ -56,8 +101,6 @@ let arrTitleLess = [
     `Strike up a conversation with somebody while at the store (grocery or other).`
   ];// 45
 
-// PUT THE boolean VALUE HERE (for preventing the users from spamming the "refresh" feature)
-let clearToRefresh = true;
 
 // PUTTING THE ACT CLASS HERE.
 function Acts(actsTitle, actsDescription, actsCompletedDate = "Incomplete"){
@@ -69,75 +112,72 @@ function Acts(actsTitle, actsDescription, actsCompletedDate = "Incomplete"){
 
 // PUT THE ARRAY REFRESHER HERE
 function arrayRefresh (){
+  let newDate = getCurrentDate(new Date());
+  localStorage.removeItem("acts");
+  localStorage.setItem("lastRefreshDate", newDate);
+
   //do stuff here.
-  if(clearToRefresh) {
-    var arr = [];
-    while(arr.length < 5){
-        var randomnumber = Math.floor(Math.random()*(arrActs.length)); //+1
-        if(arr.indexOf(randomnumber) > -1) continue;
-        arr[arr.length] = randomnumber;
+  var arr = [];
+  while(arr.length < 5){
+      var randomnumber = Math.floor(Math.random()*(arrActs.length)); //+1
+      if(arr.indexOf(randomnumber) > -1) continue;
+      arr[arr.length] = randomnumber;
 
-    };
-    let actOne = arr[0];
-    let actTwo = arr[1];
-    let actThree = arr[2];
-    let actFour = arr[3];
-    let actFive = arr[4];
+  };
+  let actOne = arr[0];
+  let actTwo = arr[1];
+  let actThree = arr[2];
+  let actFour = arr[3];
+  let actFive = arr[4];
 
-    let redOne = new Acts();
-    redOne.actsTitle = `${arrTitles[actOne]}`;
-    redOne.actsDescription = `${arrActs[actOne]}`;
+  let redOne = new Acts(arrTitles[actOne], arrActs[actOne]);
+  storeActs(redOne);
 
-    let redTwo = new Acts();
-    redTwo.actsTitle = `${arrTitles[actTwo]}`;
-    redTwo.actsDescription = `${arrActs[actTwo]}`;
+  let redTwo = new Acts(arrTitles[actTwo], arrActs[actTwo]);
+  storeActs(redTwo);
 
-    let redThree = new Acts();
-    redThree.actsTitle = `${arrTitles[actThree]}`;
-    redThree.actsDescription = `${arrActs[actThree]}`;
+  let redThree = new Acts(arrTitles[actThree], arrActs[actThree]);
+  storeActs(redThree);
 
-    let redFour = new Acts();
-    redFour.actsTitle = `${arrTitles[actFour]}`;
-    redFour.actsDescription = `${arrActs[actFour]}`;
+  let redFour = new Acts(arrTitles[actFour], arrActs[actFour]);
+  storeActs(redFour);
 
-    let redFive = new Acts();
-    redFive.actsTitle = `${arrTitles[actFive]}`;
-    redFive.actsDescription = `${arrActs[actFive]}`;
+  let redFive = new Acts(arrTitles[actFive], arrActs[actFive]);
+  storeActs(redFive);
 
-    // using arrTitleLess for testing with a big array..
-    // arrTitleLess[actOne]
-    // todo? From here, create elements with included event listeners to poplulate the space defined for these acts on the main page.
 
-    //do things
-    // ACT-the-Nth-title/description.
-    let a1t = document.getElementById("firstActTitle");
-    let a1d = document.getElementById("firstActDesc");
-    let a2t = document.getElementById("secondActTitle");
-    let a2d = document.getElementById("secondActDesc");
-    let a3t = document.getElementById("thirdActTitle");
-    let a3d = document.getElementById("thirdActDesc");
-    let a4t = document.getElementById("fourthActTitle");
-    let a4d = document.getElementById("fourthActDesc");
-    let a5t = document.getElementById("fifthActTitle");
-    let a5d = document.getElementById("fifthActDesc");
+  // using arrTitleLess for testing with a big array..
+  // arrTitleLess[actOne]
+  // todo? From here, create elements with included event listeners to poplulate the space defined for these acts on the main page.
 
-    //Displaying in the html;
-    a1t.textContent= redOne.actsTitle;
-    a1d.textContent= redOne.actsDescription; //`${arrTitleLess[actOne]}`;
-    a2t.textContent= redTwo.actsTitle;
-    a2d.textContent= redTwo.actsDescription;
-    a3t.textContent= redThree.actsTitle;
-    a3d.textContent= redThree.actsDescription;
-    a4t.textContent= redFour.actsTitle;
-    a4d.textContent= redFour.actsDescription;
-    a5t.textContent= redFive.actsTitle;
-    a5d.textContent= redFive.actsDescription;
+  //do things
+  // ACT-the-Nth-title/description.
+  let a1t = document.getElementById("firstActTitle");
+  let a1d = document.getElementById("firstActDesc");
+  let a2t = document.getElementById("secondActTitle");
+  let a2d = document.getElementById("secondActDesc");
+  let a3t = document.getElementById("thirdActTitle");
+  let a3d = document.getElementById("thirdActDesc");
+  let a4t = document.getElementById("fourthActTitle");
+  let a4d = document.getElementById("fourthActDesc");
+  let a5t = document.getElementById("fifthActTitle");
+  let a5d = document.getElementById("fifthActDesc");
 
-    clearToRefresh = false;
-  }
+  //Displaying in the html;
+  a1t.textContent= redOne.title;
+  a1d.textContent= redOne.description; //`${arrTitleLess[actOne]}`;
+  a2t.textContent= redTwo.title;
+  a2d.textContent= redTwo.description;
+  a3t.textContent= redThree.title;
+  a3d.textContent= redThree.description;
+  a4t.textContent= redFour.title;
+  a4d.textContent= redFour.description;
+  a5t.textContent= redFive.title;
+  a5d.textContent= redFive.description;
   //else, do nothing.
 };
-arrayRefresh();
+
+
 //NEED AN EVENT LISTENER THAT listens for when all 5 buttons have been pressed and prompts the user if they want to get a new list of acts to do.
 
 //HERE BEGINS THE CODE FOR THE COUNTDOWN CLOCK ---------------------------------
@@ -167,13 +207,15 @@ function displayClock(){
   // Jacob here, I really hope this is the best way of going about it.
   setInterval(function () {
     let today = new Date();
+    let lastRefreshDate = localStorage.getItem("lastRefreshDate");
+    let currenDate = getCurrentDate(today);
     let hour = 23 - today.getHours();
-    let min = 60 - today.getMinutes();
-    let sec = 60 - today.getSeconds();
+    let min = 59 - today.getMinutes();
+    let sec = 59 - today.getSeconds();
     //putting a checker to see if it's time to load up a new checklist of nice things to do.
-    if( (hour === 0) && (min===0) && (sec===0) ){/* call ^^^THAT FUNCTION here, and don't stop running this function. */
+    if( ((hour === 0) && (min===0) && (sec===0) ) || (lastRefreshDate < currenDate) ){/* call ^^^THAT FUNCTION here, and don't stop running this function. */
       arrayRefresh();
-      clearToRefresh = true;
+      localStorage.setItem("todaysActsCount",  0 );
       //also, reset the 'do_more' boolean to TRUE (note: do this inside the array refresher)
     };
     hour = checkTime(hour);
@@ -182,7 +224,6 @@ function displayClock(){
     clock.textContent = `${hour}:${min}:${sec}`;
   }, 1000);
 };
-displayClock();
 
 //HERE ENDS THE CODE FOR THE COUNTDOWN CLOCK. ----------------------------------
 
@@ -219,3 +260,34 @@ function progressSim (){
   kindPointCounter++;
 }
 let sim = setInterval (progressSim, 50);
+
+
+//////////////////
+//Client Storage//
+//////////////////
+
+//If local storage has items in it get them and parse them as json else store empty array.
+let actsArray = localStorage.getItem("acts") ? JSON.parse(localStorage.getItem("acts")) : [];
+let todaysActsCount = localStorage.getItem("todaysActs") ? JSON.parse(localStorage.getItem("todaysActs")) : 0;
+let lastRefreshDate = localStorage.getItem("lastRefreshDate") ? localStorage.getItem("lastRefreshDate") : localStorage.setItem("lastRefreshDate", getCurrentDate(new Date()))
+
+//Set localStorage to currently stored info
+localStorage.setItem("acts", JSON.stringify(actsArray));
+localStorage.setItem("todaysActs", todaysActsCount);
+
+///////////////////
+//Initilaize Page//
+///////////////////
+
+//If no acts exist run arrayRefresh
+if(!Array.isArray(actsArray) || !actsArray.length)
+{
+  arrayRefresh();
+}
+//If acts exist in storage then use them to populate the page
+else{
+  populatePageActs(actsArray);
+}
+
+//Display countdown timer
+displayClock();
