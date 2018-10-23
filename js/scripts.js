@@ -332,12 +332,12 @@ let sim = setInterval (progressSim, 50);
 
 //If local storage has items in it get them and parse them as json else store empty array.
 let actsArray = localStorage.getItem("acts") ? JSON.parse(localStorage.getItem("acts")) : [];
-let todaysActsCount = localStorage.getItem("todaysActs") ? JSON.parse(localStorage.getItem("todaysActs")) : 0;
+let todaysActsCount = localStorage.getItem("todaysActsCount") ? JSON.parse(localStorage.getItem("todaysActsCount")) : 0;
 let lastRefreshDate = localStorage.getItem("lastRefreshDate") ? localStorage.getItem("lastRefreshDate") : localStorage.setItem("lastRefreshDate", getCurrentDate(new Date()))
 
 //Set localStorage to currently stored info
 localStorage.setItem("acts", JSON.stringify(actsArray));
-localStorage.setItem("todaysActs", todaysActsCount);
+localStorage.setItem("todaysActsCount", todaysActsCount);
 
 ///////////////////
 //Initilaize Page//
