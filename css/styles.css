@@ -158,7 +158,10 @@ audio, canvas, progress, video {
 }
 
 
-
+/* STRIKEOUT STYLE FOR COMPLETED ACTS-INSERTS CSS STRIKE-THROUGH CLASS TO HTML ON BUTTON click */
+.completed-task-strikeout {
+  text-decoration: line-through;
+}
 
 /* Small Screens */
 @media only screen and (min-width : 300px) {
