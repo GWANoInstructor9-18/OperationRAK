@@ -1,4 +1,3 @@
-
 //Stores acts in localStorage
 function storeActs(actObject) 
 {
@@ -41,6 +40,72 @@ function getCurrentDate(now)
   let year = now.getFullYear();
 
   return new Date(`${year}-${month}-${day}`);
+}
+
+//Function to handle button click actions for task completion.
+function completeTask(event)
+{
+  if(event.target.tagName == "BUTTON")
+  {
+    let randomActItem = event.target.closest(".rak");
+    let randomActItemID = randomActItem.id;
+
+    //If the user clicks a button and does not click it again in the next 3 seconds it will be disabled
+    //else if the user presses the button before the time is up, the timer will be removed and the button
+    //will not be disabled.Timers are removed from the timers list after they are completed.
+    if(typeof timers[randomActItemID] === "undefined"){
+      timers[randomActItemID] = setTimeout(toggleButtonActivity, 3000, event.target, randomActItemID);
+    }
+    else
+    {
+      //Removes the existing timeout for a button that has already been pressed then removes it from the timer array
+      clearTimeout(timers[randomActItemID]);
+      delete timers[randomActItemID];
+    }
+  }
+  else if (event.target.tagName == "IMG") 
+  {
+    //If the user clicks on the image that is set after the button then they will be asked if they wish to mark the 
+    //deed as unfinished. If so the button will be reactivated the the disabled image will be removed.
+    if(confirm("This deed will be marked as unfinished."))
+    {
+      toggleButtonActivity(event.target.parentNode);
+    }
+  }
+  event.stopPropagation();
+}
+
+//Adds and removes the disabled button image.
+function disabledButtonDisplayToggle(target)
+{
+  if(!target.firstChild)
+  {
+    let image = document.createElement("img");
+    image.setAttribute("src", "img/forbidden.png");
+    image.classList.add("round-button-disabled");
+    //<img class="round-button-disabled" src="img/forbidden.png"/>
+    target.appendChild(image);
+  }
+  else
+  {
+    target.removeChild(target.firstChild); 
+  }
+}
+
+//Deactivates the clicked button or cancels the timer if deactivation period is running.
+function toggleButtonActivity(button, randomActItemID)
+{
+  if(button.disabled)
+  {
+    button.disabled = false;  
+  }
+  else
+  {
+    button.disabled = true;
+  }
+
+  disabledButtonDisplayToggle(button);
+  delete timers[randomActItemID];
 }
 
 // In the html, give the section/header/div the following id to show the clock:: 'clock'
@@ -261,7 +326,6 @@ function progressSim (){
 }
 let sim = setInterval (progressSim, 50);
 
-
 //////////////////
 //Client Storage//
 //////////////////
@@ -291,3 +355,23 @@ else{
 
 //Display countdown timer
 displayClock();
+
+//////////////////
+//Global Storage//
+//////////////////
+
+let timers = new Object();
+
+
+////////////////
+//DOM Elements//
+////////////////
+
+let randomActsList = document.querySelector(".random-acts-list");
+
+
+///////////////////
+//Event Listeners//
+///////////////////
+
+randomActsList.addEventListener("click", completeTask, false);
