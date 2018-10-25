@@ -44,8 +44,8 @@ a:-webkit-any-link {
 /*Used for vertically aligning, this is the inner/child tag*/
 .aligner-item {
   max-width: 50%;
-  /* align-items: right; */
-  /* justify-content: flex-end; */
+  align-items: right;
+  justify-content: flex-end;
 }
 
 /* main styles for the button that completes tasks. */
@@ -181,18 +181,7 @@ audio, canvas, progress, video {
     margin-right: 2%;
   }
   /*Used for vertically aligning, this is the outer/parent tag*/
-  .aligner {
-    display: flex;
-    /* align-items: center;
-    justify-content: center; */
-  }
 
-  /*Used for vertically aligning, this is the inner/child tag*/
-  .aligner-item {
-    max-width: 50%;
-    /* align-items: right; */
-    /* justify-content: flex-end; */
-  }
 }
 
 /* Medium Screens */
@@ -224,6 +213,9 @@ audio, canvas, progress, video {
   .topnav {
     font-size: 43px;
     /* padding: 3px 53px; */
+  }
+  #clock {
+    font-size: 40px;
   }
   li {
     font-size: 25px;
