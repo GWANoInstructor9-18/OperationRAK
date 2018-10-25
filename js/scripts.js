@@ -50,6 +50,8 @@ function completeTask(event)
     let randomActItem = event.target.closest(".rak");
     let randomActItemID = randomActItem.id;
 
+//This creates the strike through when user clicks button to complete a task.
+    randomActItem.classList.add("completed-task-strikeout");
     //If the user clicks a button and does not click it again in the next 3 seconds it will be disabled
     //else if the user presses the button before the time is up, the timer will be removed and the button
     //will not be disabled.Timers are removed from the timers list after they are completed.
@@ -61,16 +63,22 @@ function completeTask(event)
       //Removes the existing timeout for a button that has already been pressed then removes it from the timer array
       clearTimeout(timers[randomActItemID]);
       delete timers[randomActItemID];
+      randomActItem.classList.remove("completed-task-strikeout");
     }
   }
-  else if (event.target.tagName == "IMG") 
+  else if (event.target.tagName == "IMG")
   {
-    //If the user clicks on the image that is set after the button then they will be asked if they wish to mark the 
+    //If the user clicks on the image that is set after the button then they will be asked if they wish to mark the
     //deed as unfinished. If so the button will be reactivated the the disabled image will be removed.
     if(confirm("This deed will be marked as unfinished."))
     {
+      //Removes strike-through if user reactivates task aka changes task back to incomplete.
+      let randomActItem = event.target.closest(".rak");
+      randomActItem.classList.remove("completed-task-strikeout");
       toggleButtonActivity(event.target.parentNode);
     }
+
+
   }
   event.stopPropagation();
 }
@@ -88,7 +96,7 @@ function disabledButtonDisplayToggle(target)
   }
   else
   {
-    target.removeChild(target.firstChild); 
+    target.removeChild(target.firstChild);
   }
 }
 
@@ -97,7 +105,7 @@ function toggleButtonActivity(button, randomActItemID)
 {
   if(button.disabled)
   {
-    button.disabled = false;  
+    button.disabled = false;
   }
   else
   {
