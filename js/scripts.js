@@ -1,5 +1,5 @@
 //Stores acts in localStorage
-function storeActs(actObject) 
+function storeActs(actObject)
 {
   let actsArray = localStorage.getItem("acts") ? JSON.parse(localStorage.getItem("acts")) : [];
   actsArray.push(actObject);
@@ -49,6 +49,51 @@ function completeTask(event)
   {
     let randomActItem = event.target.closest(".rak");
     let randomActItemID = randomActItem.id;
+
+    let index = 0;
+    if (randomActItemID == 'rak-1'){
+    index = 0;
+
+    }
+    else if (randomActItemID == 'rak-2') {
+      index = 1;
+    }
+    else if (randomActItemID == 'rak-3'){
+      index = 2;
+    }
+    else if (randomActItemID == 'rak-4'){
+      index = 3;
+    }
+    else if (randomActItemID == 'rak-5'){
+      index = 4;
+    };
+    console.log(index);
+
+    // kindnessPointAdder(event);
+
+
+  if (localStorage.getItem('acts')) {
+    let actsArray = JSON.parse(localStorage.getItem('acts'));
+  }
+  else {
+    let actsArray = [];
+  }
+
+    if (localStorage.getItem('acts')){
+      let acts = JSON.parse(localStorage.getItem('acts')); //this is all of the acts
+      console.log(acts);
+      let first = acts[index]; //first is being defined as the 1 act instead of all 5
+      console.log(first);
+      console.log(randomActItemID);
+      console.log(randomActItem);
+      let points = first['point_value']; //the key/ "point_value" stored in the 1st act
+      console.log(points);
+
+    }
+    else{
+      let acts = [];
+    }
+
 
 //This creates the strike through when user clicks button to complete a task.
     randomActItem.classList.add("completed-task-strikeout");
