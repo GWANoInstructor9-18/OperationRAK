@@ -15,30 +15,27 @@
 <body class="background">
 
 	<nav class="text-center navbar">
-	  <!-- <ul> -->
 	    <div class="topnav">
 	      <a class="active" href="stats.html">Stats |</a>
 	      <a href="rakhistory.html">RAK History |</a>
 	      <a href="about.html">About</a>
 	    </div>
-	  <!-- </ul> -->
 	</nav>
 
 	<!--  start of containers -->
 	<section>
-		<!-- section had the background class, which was redundant due to the body already having it. -->
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 flex">
 					<!--  timer section-->
 					<div class="daily-timer text-center">
 						<div id="clock"></div>
-						<h1>Left to complete today's deeds.</h1>
+						<h1>Time left to complete today's deeds.</h1>
 					</div>
 
 					<div class="rakList boxes">
 						<ul class="random-acts-list">
-							<!-- <li class="rak"><b>Hug bug</b> <br> Give someone a hug. <button class="round-button"></button></li> -->
+							<!-- Beginning of where the 5 acts (plus their auxillaries) are displayed -->
 							<li class="rak" id="rak-1">
 								<div class="row aligner">
 									<div class="col-md-9 col-sm-9 col-xs-9">
@@ -46,7 +43,6 @@
 										<div id="firstActDesc"></div>
 									</div>
 									<div class="col-md-3 col-sm-3 col-xs-3 aligner-item"><button class="round-button "></button></div>
-									<!--This line of code was attached to the button of the first act. It seemed like an error/bug. We have removed it and placed it in comment here. aligner-item aligner-item-bottom -->
 								</div>
 							</li>
 
@@ -89,10 +85,10 @@
 									<div class="col-md-3 col-sm-3 col-xs-3 aligner-item"><button class="round-button"></button></div>
 								</div>
 							</li>
+
 						</ul>
 					</div>
 					<!-- END of acts box. Next up is the scorebox -->
-
 					<div class="kpScores boxes">
 						<div class="kpTally text-center">
 							<img src="img/KP.png" alt="">
@@ -104,14 +100,16 @@
 							</canvas>
 						</div>
 					</div>
+					<!-- END of scoreboard -->
+
 				</div>
 			</div>
 		</div>
 	</section>
 
 
-<!--  javascript links-->
-<script src="js/scripts.js"></script>
+	<!--  javascript links-->
+	<script src="js/scripts.js"></script>
 
 </body>
 </html>

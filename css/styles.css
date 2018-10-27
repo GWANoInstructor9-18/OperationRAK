@@ -14,6 +14,7 @@ body {
   background-position: center;
   height: 100%;
 }
+
 #clock {
   font-size: 30px;
   font-family: 'happy monkey';
@@ -110,6 +111,7 @@ li {
   flex-flow: row;
   justify-content: space-evenly;
 }
+
 .daily-timer {
   font-size: 25px;
   color: #BBD2C5;
@@ -165,13 +167,6 @@ audio, canvas, progress, video {
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
-  .background {
-    background-size: 100%;
-    background-attachment: fixed;
-    background-repeat:repeat;
-    background-position: center;
-    /* overflow: scroll; */
-  }
   .topnav {
     font-size: 28px;
   }
@@ -180,8 +175,6 @@ audio, canvas, progress, video {
     margin-top: 1%;
     margin-right: 2%;
   }
-  /*Used for vertically aligning, this is the outer/parent tag*/
-
 }
 
 /* Medium Screens */
@@ -194,18 +187,6 @@ audio, canvas, progress, video {
     margin-top: 2%;
     margin-right: 3%;
   }
-  /* .flex {
-    display: flex;
-    flex-wrap: wrap-reverse;
-    justify-content: space-evenly;
-  }
-  .background {
-    background-size: 100%;
-    background-attachment: fixed;
-    background-repeat: repeat;
-    background-position: center;
-    overflow: scroll;
-  } */
 }
 
 /* Large Screens */
@@ -233,7 +214,6 @@ audio, canvas, progress, video {
   /*Used for vertically aligning, this is the inner/child tag*/
   .aligner-item {
     max-width: 50%;
-    /* align-items: right; */
-    /* justify-content: flex-end; */
   }
 }
+/* END OF STYLES.CSS FILE */
