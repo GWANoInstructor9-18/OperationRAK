@@ -6,6 +6,13 @@ function storeActs(actObject)
   localStorage.setItem("acts", JSON.stringify(actsArray));
 }
 
+function storePointValues(points) {
+  let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
+  total += points;
+  localStorage.setItem('totalPoints', total.toString());
+  console.log(total);
+}
+
 function populatePageActs(actsArray)
 {
   // ACT-the-Nth-title/description.
@@ -50,6 +57,7 @@ function completeTask(event)
     let randomActItem = event.target.closest(".rak");
     let randomActItemID = randomActItem.id;
 
+//these index variable and if statement reassigns the classes rak-* into their index values.
     let index = 0;
     if (randomActItemID == 'rak-1'){
     index = 0;
@@ -69,8 +77,7 @@ function completeTask(event)
     };
     console.log(index);
 
-    // kindnessPointAdder(event);
-
+//this statment is pulling the indivitual array and making the point value accessable.
 
   if (localStorage.getItem('acts')) {
     let actsArray = JSON.parse(localStorage.getItem('acts'));
@@ -83,11 +90,12 @@ function completeTask(event)
       let acts = JSON.parse(localStorage.getItem('acts')); //this is all of the acts
       console.log(acts);
       let first = acts[index]; //first is being defined as the 1 act instead of all 5
-      console.log(first);
-      console.log(randomActItemID);
-      console.log(randomActItem);
+      // console.log(first);
+      // console.log(randomActItemID);
+      // console.log(randomActItem);
       let points = first['point_value']; //the key/ "point_value" stored in the 1st act
-      console.log(points);
+      // console.log(points);
+      storePointValues(points);
 
     }
     else{
