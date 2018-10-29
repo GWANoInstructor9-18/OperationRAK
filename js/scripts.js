@@ -12,7 +12,25 @@ function storePointValues(points) {
   localStorage.setItem('totalPoints', total.toString());
   displayTotalPoints();
 
-  sim = setInterval (progressSim, 2);
+  if(typeof timers["sim"] === "undefined")
+  {
+    timers["sim"] = setInterval (progressSim, 2);
+  }
+};
+
+function removePointValues(points) {
+  let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
+  total -= points;
+  localStorage.setItem('totalPoints', total.toString());
+  displayTotalPoints()
+
+  if(typeof timers["sim"] === "undefined")
+  {
+    timers["sim"] = setInterval (function()
+      {
+        progressSim(false);
+      }, 2);
+  }
 };
 
 function displayTotalPoints()
@@ -62,13 +80,15 @@ function getCurrentDate(now)
 //Function to handle button click actions for task completion.
 function completeTask(event)
 {
+  let randomActItem = event.target.closest(".rak");
+  let randomActItemID = randomActItem.id;
+  let index = 0;
+
   if(event.target.tagName == "BUTTON")
   {
-    let randomActItem = event.target.closest(".rak");
-    let randomActItemID = randomActItem.id;
+    
 
 //these index variable and if statement reassigns the classes rak-* into their index values.
-    let index = 0;
     if (randomActItemID == 'rak-1'){
     index = 0;
 
@@ -105,7 +125,8 @@ function completeTask(event)
     //else if the user presses the button before the time is up, the timer will be removed and the button
     //will not be disabled.Timers are removed from the timers list after they are completed.
     if(typeof timers[randomActItemID] === "undefined"){
-      timers[randomActItemID] = setTimeout(toggleButtonActivity, 3000, event.target, randomActItemID);
+      // timers[randomActItemID] = setTimeout(toggleButtonActivity, 3000, event.target, randomActItemID);
+      toggleButtonActivity(event.target, randomActItemID);
     }
     else
     {
@@ -117,6 +138,37 @@ function completeTask(event)
   }
   else if (event.target.tagName == "IMG")
   {
+
+    //these index variable and if statement reassigns the classes rak-* into their index values.
+    if (randomActItemID == 'rak-1'){
+    index = 0;
+
+    }
+    else if (randomActItemID == 'rak-2') {
+      index = 1;
+    }
+    else if (randomActItemID == 'rak-3'){
+      index = 2;
+    }
+    else if (randomActItemID == 'rak-4'){
+      index = 3;
+    }
+    else if (randomActItemID == 'rak-5'){
+      index = 4;
+    };
+
+    //this statment is pulling the indivitual array and making the point value accessable.
+
+    if (localStorage.getItem('acts')){
+      let acts = JSON.parse(localStorage.getItem('acts')); //this is all of the acts
+      let first = acts[index]; //first is being defined as the 1 act instead of all 5
+      let points = first['point_value']; //the key/ "point_value" stored in the 1st act
+      removePointValues(points);
+    }
+    else{
+      let acts = [];
+    };
+
     //If the user clicks on the image that is set after the button then they will be asked if they wish to mark the
     //deed as unfinished. If so the button will be reactivated the the disabled image will be removed.
     if(confirm("This deed will be marked as unfinished."))
@@ -358,7 +410,7 @@ function getNextHighestIndex(arr, value) {
 }
 
 
-function progressSim (){
+function progressSim (increasePoints = true){
   let usersTotalPoints = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
   let levelCaps = [100, 300, 700, 1500, 3000, 7000, 18000, 30000, 50000, 100000, 200000, 500000, 1000000];
   let nextLevelIndex = getNextHighestIndex(levelCaps, usersTotalPoints);
@@ -377,13 +429,32 @@ function progressSim (){
   ctx.beginPath();
   ctx.arc(100, 95, 90, start, diff/10+start, false);
   ctx.stroke();
-  if(kindPointCounter>=usersTotalPoints){
-    clearTimeout(sim);
+  if(increasePoints)
+  {
+    if(kindPointCounter>=usersTotalPoints){
+      clearTimeout(timers["sim"]);
+      delete timers["sim"];
+    }
+    kindPointCounter = (previousIndex < nextLevelIndex) ? 0 : (kindPointCounter + 1);
   }
-  kindPointCounter = (previousIndex < nextLevelIndex) ? 0 : (kindPointCounter + 1);
+  else
+  {
+    if(kindPointCounter<=usersTotalPoints){
+      clearTimeout(timers["sim"]);
+      delete timers["sim"];
+    }
+    kindPointCounter--;
+  }
   previousIndex = nextLevelIndex;
 };
-let sim = setInterval (progressSim, 2);
+
+//////////////////
+//Global Storage//
+//////////////////
+
+let timers = new Object();
+
+timers["sim"] = setInterval (progressSim, 2);
 
 //////////////////
 //Client Storage//
@@ -413,15 +484,11 @@ else{
 }
 
 //Display countdown timer
-
-displayTotalPoints();
 displayClock();
 
-//////////////////
-//Global Storage//
-//////////////////
+//Display user's total points
+displayTotalPoints();
 
-let timers = new Object();
 
 ////////////////
 //DOM Elements//
