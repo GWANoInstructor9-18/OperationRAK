@@ -10,7 +10,12 @@ function storePointValues(points) {
   let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
   total += points;
   localStorage.setItem('totalPoints', total.toString());
-  console.log(total);
+};
+
+function removePointValues(points) {
+  let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
+  total -= points;
+  localStorage.setItem('totalPoints', total.toString());
 };
 
 function populatePageActs(actsArray)
@@ -52,13 +57,15 @@ function getCurrentDate(now)
 //Function to handle button click actions for task completion.
 function completeTask(event)
 {
+  let randomActItem = event.target.closest(".rak");
+  let randomActItemID = randomActItem.id;
+  let index = 0;
+
   if(event.target.tagName == "BUTTON")
   {
-    let randomActItem = event.target.closest(".rak");
-    let randomActItemID = randomActItem.id;
+    
 
 //these index variable and if statement reassigns the classes rak-* into their index values.
-    let index = 0;
     if (randomActItemID == 'rak-1'){
     index = 0;
 
@@ -80,7 +87,6 @@ function completeTask(event)
 
     if (localStorage.getItem('acts')){
       let acts = JSON.parse(localStorage.getItem('acts')); //this is all of the acts
-      console.log(acts);
       let first = acts[index]; //first is being defined as the 1 act instead of all 5
       let points = first['point_value']; //the key/ "point_value" stored in the 1st act
       storePointValues(points);
@@ -108,6 +114,37 @@ function completeTask(event)
   }
   else if (event.target.tagName == "IMG")
   {
+
+    //these index variable and if statement reassigns the classes rak-* into their index values.
+    if (randomActItemID == 'rak-1'){
+    index = 0;
+
+    }
+    else if (randomActItemID == 'rak-2') {
+      index = 1;
+    }
+    else if (randomActItemID == 'rak-3'){
+      index = 2;
+    }
+    else if (randomActItemID == 'rak-4'){
+      index = 3;
+    }
+    else if (randomActItemID == 'rak-5'){
+      index = 4;
+    };
+
+    //this statment is pulling the indivitual array and making the point value accessable.
+
+    if (localStorage.getItem('acts')){
+      let acts = JSON.parse(localStorage.getItem('acts')); //this is all of the acts
+      let first = acts[index]; //first is being defined as the 1 act instead of all 5
+      let points = first['point_value']; //the key/ "point_value" stored in the 1st act
+      removePointValues(points);
+    }
+    else{
+      let acts = [];
+    };
+
     //If the user clicks on the image that is set after the button then they will be asked if they wish to mark the
     //deed as unfinished. If so the button will be reactivated the the disabled image will be removed.
     if(confirm("This deed will be marked as unfinished."))
