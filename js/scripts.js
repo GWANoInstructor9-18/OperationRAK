@@ -78,13 +78,6 @@ function completeTask(event)
 
 //this statment is pulling the indivitual array and making the point value accessable.
 
-  if (localStorage.getItem('acts')) {
-    let actsArray = JSON.parse(localStorage.getItem('acts'));
-  }
-  else {
-    let actsArray = [];
-  };
-
     if (localStorage.getItem('acts')){
       let acts = JSON.parse(localStorage.getItem('acts')); //this is all of the acts
       console.log(acts);
