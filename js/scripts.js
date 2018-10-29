@@ -10,8 +10,18 @@ function storePointValues(points) {
   let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
   total += points;
   localStorage.setItem('totalPoints', total.toString());
-  console.log(total);
+  displayTotalPoints();
+
+  sim = setInterval (progressSim, 2);
 };
+
+function displayTotalPoints()
+{
+  let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
+  let totalPointSpan = document.querySelectorAll(".total-kp-score")[0];
+
+  totalPointSpan.textContent = total;
+}
 
 function populatePageActs(actsArray)
 {
@@ -80,7 +90,6 @@ function completeTask(event)
 
     if (localStorage.getItem('acts')){
       let acts = JSON.parse(localStorage.getItem('acts')); //this is all of the acts
-      console.log(acts);
       let first = acts[index]; //first is being defined as the 1 act instead of all 5
       let points = first['point_value']; //the key/ "point_value" stored in the 1st act
       storePointValues(points);
@@ -340,28 +349,45 @@ myCanvas.style.height = '255px';
 
 let ctx = document.getElementById('myCanvas').getContext('2d');
 let kindPointCounter = 0;
+let previousIndex = 0;
+
+function getNextHighestIndex(arr, value) {
+    var i = arr.length;
+    while (arr[--i] > value);
+    return ++i; 
+}
+
+function indexChecker (previousIndex, newIndex)
+{
+
+}
 
 function progressSim (){
+  let usersTotalPoints = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
+  let levelCaps = [100, 300, 700, 1500, 3000, 7000, 18000, 30000, 50000, 100000, 200000, 500000, 1000000];
+  let nextLevelIndex = getNextHighestIndex(levelCaps, usersTotalPoints);
+  let nextLevel = levelCaps[nextLevelIndex];
   let cw = ctx.canvas.width;
   let ch = ctx.canvas.height;
   let start = 4.72;
-  let diff = (( kindPointCounter / 100) * Math.PI*2*10).toFixed(2);
+  let diff = (( kindPointCounter / nextLevel) * Math.PI*2*10).toFixed(2);
   ctx.clearRect(0, 0, cw,  ch);
   ctx.lineWidth = 10;
   ctx.fillStyle = '#00000';
   ctx.strokeStyle = '#ff7141';
   ctx.font = '17px happy monkey'
   ctx.textAlign = 'center';
-  ctx.fillText (kindPointCounter +'/100', cw*.5, ch*.5+2, cw);
+  ctx.fillText (`${kindPointCounter}/${nextLevel}`, cw*.5, ch*.5+2, cw);
   ctx.beginPath();
   ctx.arc(100, 95, 90, start, diff/10+start, false);
   ctx.stroke();
-  if(kindPointCounter>=75){
+  if(kindPointCounter>=usersTotalPoints){
     clearTimeout(sim);
   }
-  kindPointCounter++;
+  kindPointCounter = (previousIndex < nextLevelIndex) ? 0 : (kindPointCounter + 1);
+  previousIndex = nextLevelIndex;
 };
-let sim = setInterval (progressSim, 50);
+let sim = setInterval (progressSim, 2);
 
 //////////////////
 //Client Storage//
@@ -391,6 +417,8 @@ else{
 }
 
 //Display countdown timer
+
+displayTotalPoints();
 displayClock();
 
 //////////////////
