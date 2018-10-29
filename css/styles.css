@@ -18,6 +18,14 @@ a:-webkit-any-link {
     text-shadow: black 1px 1px 1px;
 }
 
+/* Style for the description on the about ORAK page.  */
+.about-orak {
+  color: white;
+  font-size: 25px;
+  margin: 90px;
+  display: flex;
+}git 
+
 /*Used for vertically aligning, this is the outer/parent tag*/
 .aligner {
   display: flex;
