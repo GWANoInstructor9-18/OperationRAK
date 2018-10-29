@@ -10,13 +10,36 @@ function storePointValues(points) {
   let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
   total += points;
   localStorage.setItem('totalPoints', total.toString());
+  displayTotalPoints();
+
+  if(typeof timers["sim"] === "undefined")
+  {
+    timers["sim"] = setInterval (progressSim, 2);
+  }
 };
 
 function removePointValues(points) {
   let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
   total -= points;
   localStorage.setItem('totalPoints', total.toString());
+  displayTotalPoints()
+
+  if(typeof timers["sim"] === "undefined")
+  {
+    timers["sim"] = setInterval (function()
+      {
+        progressSim(false);
+      }, 2);
+  }
 };
+
+function displayTotalPoints()
+{
+  let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
+  let totalPointSpan = document.querySelectorAll(".total-kp-score")[0];
+
+  totalPointSpan.textContent = total;
+}
 
 function populatePageActs(actsArray)
 {
@@ -102,7 +125,8 @@ function completeTask(event)
     //else if the user presses the button before the time is up, the timer will be removed and the button
     //will not be disabled.Timers are removed from the timers list after they are completed.
     if(typeof timers[randomActItemID] === "undefined"){
-      timers[randomActItemID] = setTimeout(toggleButtonActivity, 3000, event.target, randomActItemID);
+      // timers[randomActItemID] = setTimeout(toggleButtonActivity, 3000, event.target, randomActItemID);
+      toggleButtonActivity(event.target, randomActItemID);
     }
     else
     {
@@ -377,28 +401,60 @@ myCanvas.style.height = '255px';
 
 let ctx = document.getElementById('myCanvas').getContext('2d');
 let kindPointCounter = 0;
+let previousIndex = 0;
 
-function progressSim (){
+function getNextHighestIndex(arr, value) {
+    var i = arr.length;
+    while (arr[--i] > value);
+    return ++i; 
+}
+
+
+function progressSim (increasePoints = true){
+  let usersTotalPoints = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
+  let levelCaps = [100, 300, 700, 1500, 3000, 7000, 18000, 30000, 50000, 100000, 200000, 500000, 1000000];
+  let nextLevelIndex = getNextHighestIndex(levelCaps, usersTotalPoints);
+  let nextLevel = levelCaps[nextLevelIndex];
   let cw = ctx.canvas.width;
   let ch = ctx.canvas.height;
   let start = 4.72;
-  let diff = (( kindPointCounter / 100) * Math.PI*2*10).toFixed(2);
+  let diff = (( kindPointCounter / nextLevel) * Math.PI*2*10).toFixed(2);
   ctx.clearRect(0, 0, cw,  ch);
   ctx.lineWidth = 10;
   ctx.fillStyle = '#00000';
   ctx.strokeStyle = '#ff7141';
   ctx.font = '17px happy monkey'
   ctx.textAlign = 'center';
-  ctx.fillText (kindPointCounter +'/100', cw*.5, ch*.5+2, cw);
+  ctx.fillText (`${kindPointCounter}/${nextLevel}`, cw*.5, ch*.5+2, cw);
   ctx.beginPath();
   ctx.arc(100, 95, 90, start, diff/10+start, false);
   ctx.stroke();
-  if(kindPointCounter>=75){
-    clearTimeout(sim);
+  if(increasePoints)
+  {
+    if(kindPointCounter>=usersTotalPoints){
+      clearTimeout(timers["sim"]);
+      delete timers["sim"];
+    }
+    kindPointCounter = (previousIndex < nextLevelIndex) ? 0 : (kindPointCounter + 1);
   }
-  kindPointCounter++;
+  else
+  {
+    if(kindPointCounter<=usersTotalPoints){
+      clearTimeout(timers["sim"]);
+      delete timers["sim"];
+    }
+    kindPointCounter--;
+  }
+  previousIndex = nextLevelIndex;
 };
-let sim = setInterval (progressSim, 50);
+
+//////////////////
+//Global Storage//
+//////////////////
+
+let timers = new Object();
+
+timers["sim"] = setInterval (progressSim, 2);
 
 //////////////////
 //Client Storage//
@@ -430,11 +486,9 @@ else{
 //Display countdown timer
 displayClock();
 
-//////////////////
-//Global Storage//
-//////////////////
+//Display user's total points
+displayTotalPoints();
 
-let timers = new Object();
 
 ////////////////
 //DOM Elements//
