@@ -11,7 +11,7 @@ function storePointValues(points) {
   total += points;
   localStorage.setItem('totalPoints', total.toString());
   console.log(total);
-}
+};
 
 function populatePageActs(actsArray)
 {
@@ -75,7 +75,6 @@ function completeTask(event)
     else if (randomActItemID == 'rak-5'){
       index = 4;
     };
-    console.log(index);
 
 //this statment is pulling the indivitual array and making the point value accessable.
 
@@ -84,23 +83,18 @@ function completeTask(event)
   }
   else {
     let actsArray = [];
-  }
+  };
 
     if (localStorage.getItem('acts')){
       let acts = JSON.parse(localStorage.getItem('acts')); //this is all of the acts
       console.log(acts);
       let first = acts[index]; //first is being defined as the 1 act instead of all 5
-      // console.log(first);
-      // console.log(randomActItemID);
-      // console.log(randomActItem);
       let points = first['point_value']; //the key/ "point_value" stored in the 1st act
-      // console.log(points);
       storePointValues(points);
-
     }
     else{
       let acts = [];
-    }
+    };
 
 
 //This creates the strike through when user clicks button to complete a task.
