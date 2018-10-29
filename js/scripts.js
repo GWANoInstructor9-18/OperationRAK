@@ -357,10 +357,6 @@ function getNextHighestIndex(arr, value) {
     return ++i; 
 }
 
-function indexChecker (previousIndex, newIndex)
-{
-
-}
 
 function progressSim (){
   let usersTotalPoints = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
