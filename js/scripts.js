@@ -1,5 +1,5 @@
 //Stores acts in localStorage
-function storeActs(actObject) 
+function storeActs(actObject)
 {
   let actsArray = localStorage.getItem("acts") ? JSON.parse(localStorage.getItem("acts")) : [];
   actsArray.push(actObject);
@@ -77,8 +77,6 @@ function completeTask(event)
       randomActItem.classList.remove("completed-task-strikeout");
       toggleButtonActivity(event.target.parentNode);
     }
-
-
   }
   event.stopPropagation();
 }
@@ -189,13 +187,12 @@ function arrayRefresh (){
   localStorage.removeItem("acts");
   localStorage.setItem("lastRefreshDate", newDate);
 
-  //do stuff here.
+  // Getting 5 random numbers that will relate to the array positions for the act todo that day.
   var arr = [];
   while(arr.length < 5){
       var randomnumber = Math.floor(Math.random()*(arrActs.length)); //+1
       if(arr.indexOf(randomnumber) > -1) continue;
       arr[arr.length] = randomnumber;
-
   };
   let actOne = arr[0];
   let actTwo = arr[1];
@@ -217,13 +214,10 @@ function arrayRefresh (){
 
   let redFive = new Acts(arrTitles[actFive], arrActs[actFive]);
   storeActs(redFive);
-
-
   // using arrTitleLess for testing with a big array..
-  // arrTitleLess[actOne]
-  // todo? From here, create elements with included event listeners to poplulate the space defined for these acts on the main page.
+  // example: arrTitleLess[actOne]
+  // From here, create elements with included event listeners to poplulate the space defined for these acts on the main page.
 
-  //do things
   // ACT-the-Nth-title/description.
   let a1t = document.getElementById("firstActTitle");
   let a1d = document.getElementById("firstActDesc");
@@ -248,8 +242,7 @@ function arrayRefresh (){
   a5t.textContent= redFive.title;
   a5d.textContent= redFive.description;
   //else, do nothing.
-};
-
+}; //END OF arrayRefresh function
 
 //NEED AN EVENT LISTENER THAT listens for when all 5 buttons have been pressed and prompts the user if they want to get a new list of acts to do.
 
@@ -259,9 +252,9 @@ function checkTime (timeSegments) {
   return timeSegments;
 }; // makes our clock more normal/symmetric-looking.
 
-// WORK IN PROGRESS
-function countdownToCompletion(){// Hey Robert, here's that mini countdown clock for the acts you wanted. This is still a WIP.
-  //make a text REGION above where the button is (or where the description text goes) that will be where this gets displayed.
+// The "oops-I-made-a-mistake-I-didn't-mean-to-press-that" grace period function (?)
+function countdownToCompletion(){
+  //todo? make a text REGION above where the button is (or where the description text goes) that will be where this gets displayed.
   setInterval(function() {
     let now = new Date();
     let sec = now.getSeconds();
@@ -273,11 +266,10 @@ function countdownToCompletion(){// Hey Robert, here's that mini countdown clock
       //display 'then' to the REGION created above
     }
   }, 1000);
-}; // WORK IN PROGRESS, don't forget to add the function call.
+};
 
 function displayClock(){
   const clock = document.getElementById("clock");
-  // Jacob here, I really hope this is the best way of going about it.
   setInterval(function () {
     let today = new Date();
     let lastRefreshDate = localStorage.getItem("lastRefreshDate");
@@ -289,7 +281,6 @@ function displayClock(){
     if( ((hour === 0) && (min===0) && (sec===0) ) || (lastRefreshDate < currenDate) ){/* call ^^^THAT FUNCTION here, and don't stop running this function. */
       arrayRefresh();
       localStorage.setItem("todaysActsCount",  0 );
-      //also, reset the 'do_more' boolean to TRUE (note: do this inside the array refresher)
     };
     hour = checkTime(hour);
     min = checkTime(min);
@@ -297,9 +288,7 @@ function displayClock(){
     clock.textContent = `${hour}:${min}:${sec}`;
   }, 1000);
 };
-
 //HERE ENDS THE CODE FOR THE COUNTDOWN CLOCK. ----------------------------------
-
 
 // this is the progress circle
 // circle sizing
@@ -331,7 +320,7 @@ function progressSim (){
     clearTimeout(sim);
   }
   kindPointCounter++;
-}
+};
 let sim = setInterval (progressSim, 50);
 
 //////////////////
@@ -341,7 +330,7 @@ let sim = setInterval (progressSim, 50);
 //If local storage has items in it get them and parse them as json else store empty array.
 let actsArray = localStorage.getItem("acts") ? JSON.parse(localStorage.getItem("acts")) : [];
 let todaysActsCount = localStorage.getItem("todaysActsCount") ? JSON.parse(localStorage.getItem("todaysActsCount")) : 0;
-let lastRefreshDate = localStorage.getItem("lastRefreshDate") ? localStorage.getItem("lastRefreshDate") : localStorage.setItem("lastRefreshDate", getCurrentDate(new Date()))
+let lastRefreshDate = localStorage.getItem("lastRefreshDate") ? localStorage.getItem("lastRefreshDate") : localStorage.setItem("lastRefreshDate", getCurrentDate(new Date()));
 
 //Set localStorage to currently stored info
 localStorage.setItem("acts", JSON.stringify(actsArray));
@@ -370,16 +359,15 @@ displayClock();
 
 let timers = new Object();
 
-
 ////////////////
 //DOM Elements//
 ////////////////
 
 let randomActsList = document.querySelector(".random-acts-list");
 
-
 ///////////////////
 //Event Listeners//
 ///////////////////
 
 randomActsList.addEventListener("click", completeTask, false);
+// END OF JAVASCRIPT FILE.

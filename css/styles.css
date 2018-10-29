@@ -2,13 +2,30 @@ body {
   margin: 0 auto;
 }
 
+.background {
+  background: #292E49;
+  background: -webkit-linear-gradient(to top, #BBD2C5, #536976, #292E49);
+  background: linear-gradient(to top, #BBD2C5, #536976,  #292E49);
+
+  z-index: -100;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat:repeat;
+  background-position: center;
+  height: 100%;
+}
+
+#clock {
+  font-size: 30px;
+  font-family: 'happy monkey';
+  font-style: bold;
+}
 
 /* styling for the header/menu nav. */
-
 .topnav {
   font-size: 43px;
   font-family: "happy monkey";
-  padding: 3px 53px;
+  /* padding: 3px 53px; */
 }
 
 a:-webkit-any-link {
@@ -28,8 +45,9 @@ a:-webkit-any-link {
 /*Used for vertically aligning, this is the inner/child tag*/
 .aligner-item {
   max-width: 50%;
+  align-items: right;
+  justify-content: flex-end;
 }
-
 
 /* main styles for the button that completes tasks. */
 .round-button {
@@ -67,20 +85,6 @@ a:-webkit-any-link {
     height: 60px;
 }
 
-
-.background {
-  background: #292E49;
-  background: -webkit-linear-gradient(to top, #BBD2C5, #536976, #292E49);
-  background: linear-gradient(to top, #BBD2C5, #536976,  #292E49);
-
-  z-index: -100;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat:repeat;
-  background-position: center;
-  height: 100%;
-}
-
 .rakList {
   border-radius: 15px;
   height: auto;
@@ -90,7 +94,7 @@ a:-webkit-any-link {
 li {
   font-family: 'happy monkey';
   font-size: 25px;
-  list-style-position: : inside;
+  list-style-position: inside;
   list-style: none;
   border-bottom: grey 1px solid;
   margin-top: 2%;
@@ -107,6 +111,7 @@ li {
   flex-flow: row;
   justify-content: space-evenly;
 }
+
 .daily-timer {
   font-size: 25px;
   color: #BBD2C5;
@@ -121,18 +126,12 @@ li {
   margin-top: 2em;
 }
 
-#clock {
-  font-size: 30px;
-  font-family: 'happy monkey';
-  font-style: bold;
-}
 .boxes {
   box-shadow: grey 1px 1px 1px;
   border-radius: 15px;
   margin-top: 1em;
   margin-bottom: 15em;
   background-color: #ffffff;
-
 }
 
 img{
@@ -154,9 +153,7 @@ audio, canvas, progress, video {
   vertical-align: baseline;
   margin-top: 3em;
   margin-left: 40px;
-
 }
-
 
 /* STRIKEOUT STYLE FOR COMPLETED ACTS-INSERTS CSS STRIKE-THROUGH CLASS TO HTML ON BUTTON click */
 .completed-task-strikeout {
@@ -170,32 +167,53 @@ audio, canvas, progress, video {
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
-  .background {
-    background-size: 100%;
-    background-attachment: fixed;
-    background-repeat:repeat;
-    background-position: center;
-    overflow: scroll;
+  .topnav {
+    font-size: 28px;
+  }
+  li {
+    font-size: 16px;
+    margin-top: 1%;
+    margin-right: 2%;
   }
 }
 
-
 /* Medium Screens */
 @media only screen and (min-width : 768px) {
-  /* .flex {
-    display: flex;
-    flex-wrap: wrap-reverse;
-    justify-content: space-evenly;
+  .topnav {
+    font-size: 34px;
   }
-  .background {
-    background-size: 100%;
-    background-attachment: fixed;
-    background-repeat: repeat;
-    background-position: center;
-    overflow: scroll;
-  } */
+  li {
+    font-size: 20px;
+    margin-top: 2%;
+    margin-right: 3%;
+  }
 }
 
 /* Large Screens */
 @media only screen and (min-width : 1200px) {
+  .topnav {
+    font-size: 43px;
+    /* padding: 3px 53px; */
+  }
+  #clock {
+    font-size: 40px;
+  }
+  li {
+    font-size: 25px;
+    margin-top: 2%;
+    margin-right: 3%;
+  }
+
+  /*Used for vertically aligning, this is the outer/parent tag*/
+  .aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /*Used for vertically aligning, this is the inner/child tag*/
+  .aligner-item {
+    max-width: 50%;
+  }
 }
+/* END OF STYLES.CSS FILE */
