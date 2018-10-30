@@ -6,6 +6,14 @@ function storeActs(actObject)
   localStorage.setItem("acts", JSON.stringify(actsArray));
 }
 
+function updateActs(actID, completion = true)
+{
+  //Update acts in localStorage
+  let actsArray = JSON.parse(localStorage.getItem("acts"));
+  actsArray[actID].completed_date = completion ?  new Date() : "Incomplete";
+  localStorage.setItem("acts", JSON.stringify(actsArray));
+}
+
 function storePointValues(points) {
   let total = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
   total += points;
@@ -55,17 +63,21 @@ function populatePageActs(actsArray)
   let a5t = document.getElementById("fifthActTitle");
   let a5d = document.getElementById("fifthActDesc");
 
+  let actsDomArray = new Array([a1t, a1d], [a2t, a2d], [a3t, a3d], [a4t, a4d], [a5t, a5d]);
+
   //Displaying in the html;
-  a1t.textContent= actsArray[0].title;
-  a1d.textContent= actsArray[0].description; //`${arrTitleLess[actOne]}`;
-  a2t.textContent= actsArray[1].title;
-  a2d.textContent= actsArray[1].description;
-  a3t.textContent= actsArray[2].title;
-  a3d.textContent= actsArray[2].description;
-  a4t.textContent= actsArray[3].title;
-  a4d.textContent= actsArray[3].description;
-  a5t.textContent= actsArray[4].title;
-  a5d.textContent= actsArray[4].description;
+  for (let i = 0; i < actsDomArray.length; i++) {
+    for(let j = 0; j < actsDomArray[i].length; j++){
+      actsDomArray[i][j].textContent =  (j > 0) ? actsArray[i].description : actsArray[i].title;
+    }
+
+    if(actsArray[i].completed_date !== "Incomplete")
+    {
+      let randomActItem = actsDomArray[i][0].closest(".rak").querySelector(".round-button");
+      randomActItem.classList.add("completed-task-strikeout");
+      toggleButtonActivity(randomActItem, i);
+    }
+  }
 }
 
 function getCurrentDate(now)
@@ -86,7 +98,7 @@ function completeTask(event)
 
   if(event.target.tagName == "BUTTON")
   {
-    
+
 
 //these index variable and if statement reassigns the classes rak-* into their index values.
     if (randomActItemID == 'rak-1'){
@@ -113,6 +125,7 @@ function completeTask(event)
       let first = acts[index]; //first is being defined as the 1 act instead of all 5
       let points = first['point_value']; //the key/ "point_value" stored in the 1st act
       storePointValues(points);
+      updateActs(index);
     }
     else{
       let acts = [];
@@ -177,6 +190,7 @@ function completeTask(event)
       let randomActItem = event.target.closest(".rak");
       randomActItem.classList.remove("completed-task-strikeout");
       toggleButtonActivity(event.target.parentNode);
+      updateActs(index, false);
     }
   }
   event.stopPropagation();
@@ -406,7 +420,7 @@ let previousIndex = 0;
 function getNextHighestIndex(arr, value) {
     var i = arr.length;
     while (arr[--i] > value);
-    return ++i; 
+    return ++i;
 }
 
 
