@@ -15,6 +15,13 @@ body {
   height: 100%;
 }
 
+.about-orak {
+  color: white;
+  font-size: 25px;
+  margin: 90px;
+  display: flex;
+}
+
 #clock {
   font-size: 30px;
   font-family: 'happy monkey';
@@ -222,4 +229,3 @@ audio, canvas, progress, video {
     max-width: 50%;
   }
 }
-/* END OF STYLES.CSS FILE */
