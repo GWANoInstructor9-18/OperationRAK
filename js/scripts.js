@@ -98,7 +98,7 @@ function completeTask(event)
 
   if(event.target.tagName == "BUTTON")
   {
-    
+
 
 //these index variable and if statement reassigns the classes rak-* into their index values.
     if (randomActItemID == 'rak-1'){
@@ -420,7 +420,7 @@ let previousIndex = 0;
 function getNextHighestIndex(arr, value) {
     var i = arr.length;
     while (arr[--i] > value);
-    return ++i; 
+    return ++i;
 }
 
 
