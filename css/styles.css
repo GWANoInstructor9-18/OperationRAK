@@ -2,6 +2,11 @@ body {
   margin: 0 auto;
 }
 
+.history{
+  font-family: 'happy monkey';
+  font-size: 40px;
+  text-shadow: #686868 1px 1px 2px;
+}
 .background {
   background: #292E49;
   background: -webkit-linear-gradient(to top, #BBD2C5, #536976, #292E49);
@@ -91,6 +96,7 @@ a:-webkit-any-link {
   width: 50em;
 }
 
+
 li {
   font-family: 'happy monkey';
   font-size: 25px;
@@ -107,11 +113,15 @@ li {
 }
 
 .total-kp-score{
-    font-size: 40px;
-    position: absolute;
-    margin: 45px 0 0 25px;
+  font-size: 40px;
+  font-family: 'happy monkey';
+  position: absolute;
+  margin: 45px 0 0 20px;
 }
-
+.total-kindness-point-styling {
+  font-size: 16px;
+  font-family: 'happy monkey';
+}
 .flex {
   display: flex;
   flex-flow: row;
@@ -143,7 +153,7 @@ li {
 img{
   height: 3em;
   margin-top: 4em;
-  margin-left: 9em;
+  margin-left: 7em;
 }
 
 .points {
@@ -151,13 +161,11 @@ img{
   font-size: 15px;
   margin-top: 6em;
 }
-.canvas-style {
-  z-index: 100;
-}
+
 audio, canvas, progress, video {
   display: inline-block;
   vertical-align: baseline;
-  margin-top: 3em;
+  margin-top: 2em;
   margin-left: 40px;
 }
 
