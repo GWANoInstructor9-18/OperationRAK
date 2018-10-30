@@ -24,14 +24,8 @@ a:-webkit-any-link {
   font-size: 25px;
   margin: 90px;
   display: flex;
-}git
-
-.pic {
-  border-radius: 8px;
-
-  width: 50%;
-  height: 77px;
 }
+
 
 /*Used for vertically aligning, this is the outer/parent tag*/
 .aligner {
